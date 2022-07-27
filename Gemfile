@@ -3,8 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.0"
 
+# Utilities
+gem 'byebug'
+gem 'rest-client'
+
 # Auth
 gem "devise"
+gem 'devise-token_authenticatable'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3", ">= 7.0.3.1"
@@ -52,3 +57,10 @@ group :development do
   # gem "spring"
 end
 
+
+group :test do
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
+  gem 'rspec-expectations'
+  gem 'factory_bot_rails'
+end
