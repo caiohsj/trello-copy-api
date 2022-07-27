@@ -10,11 +10,13 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    @user = User.find_for_database_authentication(email: params[:email])
+    session_service = SessionService.call(email: params[:email], password: params[:password])
 
-    if @user.valid_password? params[:password]
-      render json: @user, status: :ok
+    if session_service.success?
+      return render json: session_service.result, status: :ok
     end
+
+    render json: session_service.errors.full_messages, status: :unprocessable_entity
   end
 
   # DELETE /resource/sign_out
