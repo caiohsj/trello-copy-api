@@ -2,3 +2,10 @@ pt-BR:
   services:
     session:
       invalid_credentials: Credenciais inválidas
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: já cadastrado

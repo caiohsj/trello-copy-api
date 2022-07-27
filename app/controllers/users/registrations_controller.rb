@@ -12,6 +12,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     @user = User.create(user_params)
+    return render json: @user, status: :ok if @user.persisted?
+    render json: @user.errors.full_messages, status: :unprocessable_entity
   end
 
   # GET /resource/edit
