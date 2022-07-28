@@ -26,7 +26,8 @@ class BaseService
       end
     end
     @steps.each do | step |
-      @service.public_send(step) unless @service.instance_variable_get('@stop')
+      break if @service.instance_variable_get('@stop')
+      @service.public_send(step)
     end
     result = @service.call
     @service.define_singleton_method(:result) do
