@@ -5,5 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :token_authenticatable
 
+  has_many :boards
+
   validates_presence_of :name
 end
