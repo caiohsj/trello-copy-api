@@ -36,32 +36,39 @@ Dado('os novos dados do board') do
 end
 
 Quando('o usuário enviar os dados para atualizar o quadro') do
-  @response = @test_client.put("/api/v1/boards/34", @update_params)
+  @response = @test_client.put("/api/v1/boards/#{@board.id}", @update_params)
 end
 
 Então('o usuário deve ter atualizado o quadro com sucesso') do
-  byebug
+  expect(@response[:status]).to be_equal(200)
+  expect(@response[:body][:background_color] != @board.background_color).to be_truthy
+  expect(@response[:body][:background_photo] != @board.background_photo).to be_truthy
 end
 
 # Cenário: Usuário deleta um quadro que ele criou
-Dado('{int} quadros cadastrados pelo usuário no sistema') do |int|
-  
-end
 
 Quando('o usuário clicar para deletar o quadro') do
-
+  @response = @test_client.delete("/api/v1/boards/#{@board.id}")
 end
 
 Então('o usuário deve ter deletado o quadro com sucesso') do
-
+  expect(@response[:status]).to be_equal(200)
+  expect(Board.all).to be_empty
 end
 
 # Cenário: Usuário visualiza os quadros que ele criou
 
-Quando('o usuário clicar para visualizar os quadros') do
+Dado('{int} quadros cadastrados pelo usuário no sistema') do |int|
+  int.times do
+    FactoryBot.create(:board, user: @user)
+  end
+end
 
+Quando('o usuário clicar para visualizar os quadros') do
+  @response = @test_client.get('/api/v1/boards')
 end
 
 Então('o usuário deve visualizar {int} quadros') do |int|
-
+  expect(@response[:status]).to be_equal(200)
+  expect(@response[:body].count).to be_equal(int)
 end

@@ -18,7 +18,7 @@ Funcionalidade: O usuário poderá criar quadros, atualizar, deletar e ver quadr
     Então o usuário deve ter atualizado o quadro com sucesso
 
   Cenário: Usuário deleta um quadro que ele criou
-    Dado 1 quadros cadastrados pelo usuário no sistema
+    Dado um quadro cadastrado pelo usuário no sistema
     Quando o usuário clicar para deletar o quadro
     Então o usuário deve ter deletado o quadro com sucesso
   

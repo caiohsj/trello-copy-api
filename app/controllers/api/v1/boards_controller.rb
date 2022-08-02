@@ -1,9 +1,13 @@
 class Api::V1::BoardsController < Api::ApiController
   before_action :authenticate_user_from_token!
-  before_action :find_board, only: [:update]
+  before_action :find_board, only: [:update, :destroy]
+
+  def index
+    render json: current_user.boards, status: :ok
+  end
 
   def create
-    board = current_user.create_board(board_params)
+    board = current_user.boards.create(board_params)
 
     return render json: board, status: :ok if board.persisted?
 
@@ -12,6 +16,12 @@ class Api::V1::BoardsController < Api::ApiController
 
   def update
     return render json: @board, status: :ok if @board.update(board_params)
+
+    render json: @board.errors.full_messages, status: :unprocessable_entity
+  end
+
+  def destroy
+    return render json: @board, status: :ok if @board.destroy
 
     render json: @board.errors.full_messages, status: :unprocessable_entity
   end
