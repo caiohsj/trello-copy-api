@@ -2,10 +2,10 @@ Dado('um usuário cadastrado no sistema') do
   @user = FactoryBot.create(:user)
 end
 
-Dado('a credenciais do usuário') do
+Dado('as credenciais do usuário') do
   @credentials = {
     email: @user.email,
-    password: 'mypass',
+    password: 'mypass'
   }
 end
 
@@ -14,10 +14,10 @@ Quando('o usuário clicar em entrar') do
 end
 
 Então('o usuario deve ter sido autenticado com sucesso') do
-  body = JSON.parse(@login_response.body)
-  expect(@login_response.status).to be_equal(200)
-  expect(body['email'] == @user.email).to be_truthy
-  expect(body['authentication_token'].present?).to be_truthy
+  body = @login_response[:body]
+  expect(@login_response[:status]).to be_equal(200)
+  expect(body[:email] == @user.email).to be_truthy
+  expect(body[:authentication_token].present?).to be_truthy
 end
 
 # Cenário: usuário tenta realizar o login com credenciais inválidas
@@ -25,13 +25,11 @@ end
 Dado('a credenciais inválidas do usuário') do
   @credentials = {
     email: 'test@gmail.com',
-    password: 'mypass123',
+    password: 'mypass123'
   }
 end
 
 Então('o usuario não deve ter sido autenticado com sucesso') do
-  body = JSON.parse(@login_response.body)
-  expect(@login_response.status).to be_equal(422)
-  expect(body).to be_include(I18n.t('services.session.invalid_credentials'))
+  expect(@login_response[:status]).to be_equal(422)
+  expect(@login_response[:body]).to be_include(I18n.t('services.session.invalid_credentials'))
 end
-

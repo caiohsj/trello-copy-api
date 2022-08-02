@@ -7,7 +7,7 @@ Funcionalidade: O usuário poderá fazer login no sistema
 
   Cenário: usuário realiza o login com sucesso
     Dado um usuário cadastrado no sistema
-    E a credenciais do usuário
+    E as credenciais do usuário
     Quando o usuário clicar em entrar
     Então o usuario deve ter sido autenticado com sucesso
 
