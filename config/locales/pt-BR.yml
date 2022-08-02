@@ -3,9 +3,22 @@ pt-BR:
     session:
       invalid_credentials: Credenciais inválidas
   activerecord:
+    models:
+      user:
+        one: Usuário
+        other: Usuários
+    attributes:
+      user:
+        password: Senha
+        name: Nome
     errors:
       models:
         user:
           attributes:
+            name:
+              blank: não pode ficar em branco
             email:
               taken: já cadastrado
+              blank: não pode ficar em branco
+            password:
+              blank: não pode ficar em branco
