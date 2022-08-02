@@ -72,3 +72,17 @@ Então('o usuário deve visualizar {int} quadros') do |int|
   expect(@response[:status]).to be_equal(200)
   expect(@response[:body].count).to be_equal(int)
 end
+
+# Cenário: Usuário tenta atualizar um quadro que foi criado por outro usuário
+
+Dado('um outro usuário cadastrado no sistema') do
+  @other_user = FactoryBot.create(:user, name: 'Outro usuário', email: 'billgates@outlook.com')
+end
+
+Dado('um quadro cadastrado por outro usuário no sistema') do
+  @board = FactoryBot.create(:board, user: @other_user)
+end
+
+Então('a resposta deve conter o status {int}') do |int|
+  expect(@response[:status]).to be_equal(int)
+end

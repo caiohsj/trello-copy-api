@@ -17,10 +17,23 @@ Funcionalidade: O usuário poderá criar quadros, atualizar, deletar e ver quadr
     Quando o usuário enviar os dados para atualizar o quadro
     Então o usuário deve ter atualizado o quadro com sucesso
 
+  Cenário: Usuário tenta atualizar um quadro que foi criado por outro usuário
+    Dado um outro usuário cadastrado no sistema
+    E um quadro cadastrado por outro usuário no sistema
+    E os novos dados do board
+    Quando o usuário enviar os dados para atualizar o quadro
+    Então a resposta deve conter o status 404
+
   Cenário: Usuário deleta um quadro que ele criou
     Dado um quadro cadastrado pelo usuário no sistema
     Quando o usuário clicar para deletar o quadro
     Então o usuário deve ter deletado o quadro com sucesso
+
+  Cenário: Usuário tenta deletar um quadro que foi criado por outro usuário
+    Dado um outro usuário cadastrado no sistema
+    E um quadro cadastrado por outro usuário no sistema
+    Quando o usuário clicar para deletar o quadro
+    Então a resposta deve conter o status 404
   
   Cenário: Usuário visualiza os quadros que ele criou
     Dado 3 quadros cadastrados pelo usuário no sistema
