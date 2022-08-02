@@ -6,6 +6,7 @@ ruby "3.0.0"
 # Utilities
 gem 'byebug'
 gem 'rest-client'
+gem 'carrierwave', '~> 2.0'
 
 # Auth
 gem "devise"
