@@ -7,10 +7,17 @@ pt-BR:
       user:
         one: Usuário
         other: Usuários
+      board:
+        one: Quadro
+        other: Quadros
     attributes:
       user:
         password: Senha
         name: Nome
+      board:
+        name: Nome
+        background_color: Cor de fundo
+        background_photo: Imagem de fundo
     errors:
       models:
         user:
@@ -21,4 +28,8 @@ pt-BR:
               taken: já cadastrado
               blank: não pode ficar em branco
             password:
+              blank: não pode ficar em branco
+        board:
+          attributes:
+            name:
               blank: não pode ficar em branco
