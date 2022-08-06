@@ -86,3 +86,14 @@ end
 Então('a resposta deve conter o status {int}') do |int|
   expect(@response[:status]).to be_equal(int)
 end
+
+# Cenário: Usuário visualiza um quadro específico que ele criou
+
+Quando('o usuário clicar para visualizar o quadro') do
+  @response = @test_client.get("/api/v1/boards/#{@board.id}")
+end
+
+Então('a resposta deve conter os dados do quadro específico') do
+  expect(@response[:body][:id]).to be_present
+  expect(@response[:body][:name]).to be_present
+end

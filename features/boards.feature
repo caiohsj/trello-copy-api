@@ -39,3 +39,9 @@ Funcionalidade: O usuário poderá criar quadros, atualizar, deletar e ver quadr
     Dado 3 quadros cadastrados pelo usuário no sistema
     Quando o usuário clicar para visualizar os quadros
     Então o usuário deve visualizar 3 quadros
+
+  Cenário: Usuário visualiza um quadro específico que ele criou
+    Dado um quadro cadastrado pelo usuário no sistema
+    Quando o usuário clicar para visualizar o quadro
+    Então a resposta deve conter o status 200
+    E a resposta deve conter os dados do quadro específico
