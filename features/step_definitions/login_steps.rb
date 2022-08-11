@@ -10,7 +10,7 @@ Dado('as credenciais do usuário') do
 end
 
 Quando('o usuário clicar em entrar') do
-  @login_response = @test_client.post('/users/sign_in', @credentials)
+  @login_response = @test_client.post('/api/v1/users/sign_in', @credentials)
 end
 
 Então('o usuario deve ter sido autenticado com sucesso') do
@@ -32,4 +32,12 @@ end
 Então('o usuario não deve ter sido autenticado com sucesso') do
   expect(@login_response[:status]).to be_equal(422)
   expect(@login_response[:body]).to be_include(I18n.t('services.session.invalid_credentials'))
+end
+
+# Background
+
+Dado('um usuário logado no sistema') do
+  @password = 'mypass'
+  @user = FactoryBot.create(:user, password: @password)
+  @test_client.login(@user, @password)
 end

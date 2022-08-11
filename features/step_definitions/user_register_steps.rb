@@ -15,7 +15,7 @@ Dado('os dados para efetuar o cadastro') do
 end
 
 Quando('o usuário clicar em cadastrar') do
-  @response = @test_client.post('/users', @user_params)
+  @response = @test_client.post('/api/v1/users', @user_params)
 end
 
 Então('o usuario deve ter sido registrado com sucesso') do

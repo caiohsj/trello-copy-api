@@ -1,11 +1,5 @@
 # Cenário: Usuário cria um quadro com sucesso
 
-Dado('um usuário logado no sistema') do
-  @password = 'mypass'
-  @user = FactoryBot.create(:user, password: @password)
-  @test_client.login(@user, @password)
-end
-
 Dado('os dados necessários para criar um quadro') do
   @create_params = {
     name: 'Primeiro Quadro'

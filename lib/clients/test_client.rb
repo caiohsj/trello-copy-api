@@ -18,7 +18,7 @@ class TestClient
   end
 
   def login(user, password)
-    response = post('/users/sign_in', { email: user.email, password: password })
+    response = post('/api/v1/users/sign_in', { email: user.email, password: password })
     @email = response[:body][:email]
     @token = response[:body][:authentication_token]
   end
