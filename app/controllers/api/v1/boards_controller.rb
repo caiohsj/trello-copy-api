@@ -15,7 +15,7 @@ class Api::V1::BoardsController < Api::ApiController
   end
 
   def show
-    render json: @board, status: :ok
+    render json: @board.show_serializer, status: :ok
   end
 
   def update
