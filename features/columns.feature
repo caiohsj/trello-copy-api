@@ -4,16 +4,15 @@ Funcionalidade: O usuário poderá criar colunas dentro dos quadros, atualizar, 
 
   Cenario de Fundo:
     Dado um test client
-    Dado um usuário logado no sistema
+    E um usuário logado no sistema
+    E um quadro cadastrado pelo usuário no sistema
 
   Cenário: Usuário cria uma coluna com sucesso
-    Dado um quadro cadastrado pelo usuário no sistema
     E os dados necessários para criar uma coluna
     Quando o usuário enviar os dados para criar uma coluna
     Então o usuário deve ter criado uma coluna com sucesso
 
   Cenário: Usuário atualiza uma coluna que ele criou
-    Dado um quadro cadastrado pelo usuário no sistema
     E uma coluna cadastrada pelo usuário no sistema
     E os novos dados da coluna
     Quando o usuário enviar os dados para atualizar a coluna
@@ -23,12 +22,11 @@ Funcionalidade: O usuário poderá criar colunas dentro dos quadros, atualizar, 
     Dado um outro usuário cadastrado no sistema
     E um quadro cadastrado por outro usuário no sistema
     E uma coluna cadastrada por outro usuário no sistema
-    E os novos dados do board
+    E os novos dados da coluna
     Quando o usuário enviar os dados para atualizar a coluna
     Então a resposta deve conter o status 404
 
   Cenário: Usuário deleta uma coluna que ele criou
-    Dado um quadro cadastrado pelo usuário no sistema
     E uma coluna cadastrada pelo usuário no sistema
     Quando o usuário clicar para deletar a coluna
     Então o usuário deve ter deletado a coluna com sucesso
@@ -41,7 +39,6 @@ Funcionalidade: O usuário poderá criar colunas dentro dos quadros, atualizar, 
     Então a resposta deve conter o status 404
 
   Cenário: Usuário visualiza uma coluna específica que ele criou
-    Dado um quadro cadastrado pelo usuário no sistema
     E uma coluna cadastrada pelo usuário no sistema
     Quando o usuário clicar para visualizar a coluna
     Então a resposta deve conter o status 200
