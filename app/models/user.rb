@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :token_authenticatable
 
   has_many :boards
+  has_many :columns, through: :boards
 
   validates_presence_of :name
 end

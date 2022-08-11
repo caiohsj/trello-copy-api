@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_02_011222) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_232346) do
   create_table "boards", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.bigint "user_id", null: false
@@ -19,6 +19,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_02_011222) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_boards_on_user_id"
+  end
+
+  create_table "columns", charset: "utf8mb3", force: :cascade do |t|
+    t.string "title"
+    t.bigint "board_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_id"], name: "index_columns_on_board_id"
   end
 
   create_table "users", charset: "utf8mb3", force: :cascade do |t|
@@ -38,4 +46,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_02_011222) do
   end
 
   add_foreign_key "boards", "users"
+  add_foreign_key "columns", "boards"
 end
