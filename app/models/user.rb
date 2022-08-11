@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :boards
   has_many :columns, through: :boards
+  has_many :cards, through: :columns
 
   validates_presence_of :name
 end
