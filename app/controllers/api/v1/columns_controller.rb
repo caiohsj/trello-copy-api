@@ -1,7 +1,7 @@
 class Api::V1::ColumnsController < Api::ApiController
   before_action :authenticate_user_from_token!
   before_action :find_board, only: [:create]
-  before_action :find_column, only: [:update, :destroy]
+  before_action :find_column, only: [:update, :destroy, :show]
 
   def create
     column = @board.columns.create(title: params[:title])
@@ -21,6 +21,10 @@ class Api::V1::ColumnsController < Api::ApiController
     return render json: @column, status: :ok if @column.destroy
 
     render json: @column.errors.full_messages, status: :unprocessable_entity
+  end
+
+  def show
+    render json: @column, status: :ok
   end
 
   private

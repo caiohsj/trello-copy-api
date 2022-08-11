@@ -44,3 +44,24 @@ end
 Dado('uma coluna cadastrada por outro usuário no sistema') do
   @column = FactoryBot.create(:column, board: @board)
 end
+
+# Cenário: Usuário deleta uma coluna que ele criou
+
+Quando('o usuário clicar para deletar a coluna') do
+  @response = @test_client.delete("/api/v1/columns/#{@column.id}")
+end
+
+Então('o usuário deve ter deletado a coluna com sucesso') do
+  expect(Column.all.count).to be_equal(0)
+end
+
+# Cenário: Usuário visualiza uma coluna específica que ele criou
+
+Quando('o usuário clicar para visualizar a coluna') do
+  @response = @test_client.get("/api/v1/columns/#{@column.id}")
+end
+
+Então('a resposta deve conter os dados da coluna específica') do
+  expect(@response[:body][:id]).to be_present
+  expect(@response[:body][:title]).to be_present
+end

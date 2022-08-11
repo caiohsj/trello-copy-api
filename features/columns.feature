@@ -36,13 +36,13 @@ Funcionalidade: O usuário poderá criar colunas dentro dos quadros, atualizar, 
   Cenário: Usuário tenta deletar uma coluna que foi criada por outro usuário
     Dado um outro usuário cadastrado no sistema
     E um quadro cadastrado por outro usuário no sistema
-    E uma coluna cadastrado por outro usuário no sistema
+    E uma coluna cadastrada por outro usuário no sistema
     Quando o usuário clicar para deletar a coluna
     Então a resposta deve conter o status 404
 
   Cenário: Usuário visualiza uma coluna específica que ele criou
     Dado um quadro cadastrado pelo usuário no sistema
-    E uma coluna cadastrado pelo usuário no sistema
+    E uma coluna cadastrada pelo usuário no sistema
     Quando o usuário clicar para visualizar a coluna
     Então a resposta deve conter o status 200
     E a resposta deve conter os dados da coluna específica
