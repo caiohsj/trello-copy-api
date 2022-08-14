@@ -6,13 +6,13 @@ class Api::V1::ColumnsController < Api::ApiController
   def create
     column = @board.columns.create(title: params[:title])
 
-    return render json: column, status: :ok if column.persisted?
+    return render json: column.default_serializer, status: :ok if column.persisted?
 
     render json: column.errors.full_messages, status: :unprocessable_entity
   end
 
   def update
-    return render json: @column, status: :ok if @column.update(title: params[:title])
+    return render json: @column.default_serializer, status: :ok if @column.update(title: params[:title])
 
     render json: @column.errors.full_messages, status: :unprocessable_entity
   end
