@@ -10,6 +10,12 @@ pt-BR:
       board:
         one: Quadro
         other: Quadros
+      column:
+        one: Coluna
+        other: Colunas
+      card:
+        one: Cartão
+        other: Cartões
     attributes:
       user:
         password: Senha
@@ -18,6 +24,11 @@ pt-BR:
         name: Nome
         background_color: Cor de fundo
         background_photo: Imagem de fundo
+      column:
+        title: Título
+      card:
+        title: Título
+        description: Descrição
     errors:
       models:
         user:
@@ -32,4 +43,12 @@ pt-BR:
         board:
           attributes:
             name:
+              blank: não pode ficar em branco
+        column:
+          attributes:
+            title:
+              blank: não pode ficar em branco
+        card:
+          attributes:
+            title:
               blank: não pode ficar em branco
