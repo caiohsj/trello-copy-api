@@ -9,7 +9,14 @@ class Board < ApplicationRecord
   def show_serializer
     serializable_hash(
       except: [:created_at, :updated_at],
-      include: { columns: { except: [:created_at, :updated_at] } }
+      include: {
+        columns: {
+          except: [:created_at, :updated_at],
+          include: {
+            cards: { except: [:created_at, :updated_at] }
+          }
+        }
+      }
     )
   end
 end
