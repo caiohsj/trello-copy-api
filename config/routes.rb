@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
       resources :boards
-      resources :cards
+      resources :cards do
+        put :change_column
+      end
       resources :columns
     end
   end

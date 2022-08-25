@@ -1,7 +1,7 @@
 class Api::V1::CardsController < Api::ApiController
   before_action :authenticate_user_from_token!
-  before_action :find_column, only: [:create]
-  before_action :find_card, only: [:update, :destroy, :show]
+  before_action :find_column, only: [:create, :change_column]
+  before_action :find_card, only: [:update, :destroy, :show, :change_column]
 
   def create
     card = @column.cards.create(card_params)
@@ -27,6 +27,12 @@ class Api::V1::CardsController < Api::ApiController
     render json: @card, status: :ok
   end
 
+  def change_column
+    return render json: @card, status: :ok if @card.update(column_id: params[:column_id])
+
+    render json: @card.errors.full_messages, status: :unprocessable_entity
+  end
+
   private
 
   def card_params
@@ -34,7 +40,7 @@ class Api::V1::CardsController < Api::ApiController
   end
 
   def find_card
-    @card = current_user.cards.find_by(id: params[:id])
+    @card = current_user.cards.find_by(id: params[:id] || params[:card_id])
 
     render json: {}, status: :not_found unless @card.present?
   end
