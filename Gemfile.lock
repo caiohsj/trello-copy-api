@@ -264,7 +264,6 @@ GEM
     rspec-support (3.11.0)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
-    sqlite3 (1.4.4)
     ssrf_filter (1.0.7)
     strscan (3.0.4)
     sys-uname (1.2.2)
@@ -307,7 +306,6 @@ DEPENDENCIES
   rails (~> 7.0.3, >= 7.0.3.1)
   rest-client
   rspec-expectations
-  sqlite3 (~> 1.4)
   tzinfo-data
 
 RUBY VERSION
